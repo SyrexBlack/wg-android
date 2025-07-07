@@ -16,33 +16,15 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = WireguardBlue80,
-    onPrimary = WireguardBlue20,
-    primaryContainer = WireguardBlue30,
-    onPrimaryContainer = WireguardBlue90,
-    secondary = WireguardGreen80,
-    onSecondary = WireguardGreen20,
-    secondaryContainer = WireguardGreen30,
-    onSecondaryContainer = WireguardGreen90,
-    tertiary = WireguardOrange80,
-    onTertiary = WireguardOrange20,
-    tertiaryContainer = WireguardOrange30,
-    onTertiaryContainer = WireguardOrange90
+    primary = WireguardBlue,
+    secondary = WireguardGreen,
+    tertiary = WireguardOrange
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = WireguardBlue40,
-    onPrimary = WireguardBlue100,
-    primaryContainer = WireguardBlue90,
-    onPrimaryContainer = WireguardBlue10,
-    secondary = WireguardGreen40,
-    onSecondary = WireguardGreen100,
-    secondaryContainer = WireguardGreen90,
-    onSecondaryContainer = WireguardGreen10,
-    tertiary = WireguardOrange40,
-    onTertiary = WireguardOrange100,
-    tertiaryContainer = WireguardOrange90,
-    onTertiaryContainer = WireguardOrange10
+    primary = WireguardBlue,
+    secondary = WireguardGreen,
+    tertiary = WireguardOrange
 )
 
 @Composable

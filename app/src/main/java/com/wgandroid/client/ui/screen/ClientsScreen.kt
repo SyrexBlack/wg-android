@@ -18,8 +18,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.google.accompanist.swiperefresh.SwipeRefresh
-import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.wgandroid.client.R
 import com.wgandroid.client.data.model.WireguardClient
 import com.wgandroid.client.ui.component.CreateClientDialog
@@ -145,28 +143,23 @@ fun ClientsScreen(
                 
                 else -> {
                     // Client list
-                    SwipeRefresh(
-                        state = rememberSwipeRefreshState(uiState.isRefreshing),
-                        onRefresh = { viewModel.refreshClients() }
+                    LazyColumn(
+                        modifier = Modifier.fillMaxSize(),
+                        contentPadding = PaddingValues(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        LazyColumn(
-                            modifier = Modifier.fillMaxSize(),
-                            contentPadding = PaddingValues(16.dp),
-                            verticalArrangement = Arrangement.spacedBy(8.dp)
-                        ) {
-                            items(uiState.clients) { client ->
-                                ClientCard(
-                                    client = client,
-                                    onToggleEnabled = { viewModel.toggleClientEnabled(client) },
-                                    onDelete = { viewModel.showDeleteDialog(client) },
-                                    onDownloadConfig = { 
-                                        viewModel.getClientConfig(client) { config ->
-                                            clipboardManager.setText(AnnotatedString(config))
-                                            // Show toast that config was copied
-                                        }
+                        items(uiState.clients) { client ->
+                            ClientCard(
+                                client = client,
+                                onToggleEnabled = { viewModel.toggleClientEnabled(client) },
+                                onDelete = { viewModel.showDeleteDialog(client) },
+                                onDownloadConfig = { 
+                                    viewModel.getClientConfig(client) { config ->
+                                        clipboardManager.setText(AnnotatedString(config))
+                                        // Show toast that config was copied
                                     }
-                                )
-                            }
+                                }
+                            )
                         }
                     }
                 }
