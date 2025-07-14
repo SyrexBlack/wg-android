@@ -17,20 +17,24 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.wgandroid.client.R
-import com.wgandroid.client.ui.viewmodel.SettingsViewModel
+import com.wgandroid.client.ui.viewmodel.SafeSettingsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(
+fun SafeSettingsScreen(
     onNavigateBack: () -> Unit,
-    viewModel: SettingsViewModel = viewModel()
+    viewModel: SafeSettingsViewModel = viewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val context = LocalContext.current
     
-    // Initialize ViewModel with context
+    // Safe ViewModel initialization
     LaunchedEffect(Unit) {
-        viewModel.initializeWithContext(context)
+        try {
+            viewModel.initializeWithContext(context)
+        } catch (e: Exception) {
+            // Handle any initialization errors silently
+        }
     }
     
     Scaffold(
@@ -167,6 +171,35 @@ fun SettingsScreen(
                             }
                         }
                     }
+                    
+                    // Initialization Error
+                    uiState.initError?.let { error ->
+                        Card(
+                            modifier = Modifier.fillMaxWidth(),
+                            colors = CardDefaults.cardColors(
+                                containerColor = MaterialTheme.colorScheme.errorContainer
+                            )
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(12.dp),
+                                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Icon(
+                                    Icons.Default.Warning,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.onErrorContainer
+                                )
+                                Text(
+                                    text = "Ошибка инициализации: $error",
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = MaterialTheme.colorScheme.onErrorContainer
+                                )
+                            }
+                        }
+                    }
                 }
             }
             
@@ -227,14 +260,6 @@ fun SettingsScreen(
             
             // Spacer for bottom padding
             Spacer(modifier = Modifier.height(32.dp))
-        }
-    }
-    
-    // Show success message
-    LaunchedEffect(uiState.settingsSaved) {
-        if (uiState.settingsSaved) {
-            // Show snackbar or toast
-            viewModel.clearSavedState()
         }
     }
 } 

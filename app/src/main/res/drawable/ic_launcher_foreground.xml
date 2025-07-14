@@ -1,32 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="108dp"
-    android:height="108dp"
-    android:viewportWidth="108"
-    android:viewportHeight="108">
-    <group android:scaleX="0.58"
-        android:scaleY="0.58"
-        android:translateX="22.68"
-        android:translateY="22.68">
-        <!-- WG Circle -->
-        <path
-            android:fillColor="#FFFFFF"
-            android:pathData="M54,54m-50,0a50,50 0,1 1,100 0a50,50 0,1 1,-100 0" />
-        
-        <!-- WG Text -->
-        <path
-            android:fillColor="#1976D2"
-            android:pathData="M30,35L35,35L40,55L45,35L50,35L54,70L49,70L46,45L42,60L38,60L34,45L31,70L26,70Z" />
-        
-        <path
-            android:fillColor="#1976D2"
-            android:pathData="M58,35L82,35L82,40L74,40L74,45L80,45L80,50L74,50L74,55L82,55L82,60L69,60L69,70L64,70L64,60L58,60L58,55L63,55L63,40L58,40Z" />
-        
-        <!-- Connection lines -->
-        <path
-            android:fillColor="#4CAF50"
-            android:strokeColor="#4CAF50"
-            android:strokeWidth="2"
-            android:pathData="M20,20L88,88M20,88L88,20" />
-    </group>
-</vector> 
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <!-- Внешний круг -->
+    <path
+        android:strokeColor="#00FFFF"
+        android:strokeWidth="2"
+        android:pathData="M24,2 A22,22 0 1 1 23.999,2 Z"/>
+
+    <!-- Внутренний круг -->
+    <path
+        android:strokeColor="#00FFFF"
+        android:strokeWidth="1"
+        android:pathData="M24,6 A18,18 0 1 1 23.999,6 Z"/>
+
+    <!-- Буква W -->
+    <path
+        android:fillColor="#00FFFF"
+        android:pathData="M10,18 L13,30 L16,22 L19,30 L22,18 L19,30 L16,24 L13,30 Z"/>
+
+    <!-- Буква G -->
+    <path
+        android:fillColor="#00FFFF"
+        android:pathData="M28,18 A6,6 0 1 1 28,30 H34 V28 H30 V24 H34 V22 H28 Z"/>
+</vector>

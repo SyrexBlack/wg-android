@@ -28,6 +28,9 @@ interface WgEasyApiService {
     @GET("/api/wireguard/client/{clientId}/qrcode.svg")
     suspend fun getClientQRCode(@Path("clientId") clientId: String): Response<ResponseBody>
     
+    @POST("/api/session")
+    suspend fun login(@Body request: LoginRequest): Response<Unit>
+    
     @GET("/api/session")
     suspend fun getSession(): Response<ServerInfo>
 } 

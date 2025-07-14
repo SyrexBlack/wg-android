@@ -38,12 +38,11 @@ fun ClientsScreen(
     val showCreateDialog by viewModel.showCreateDialog.collectAsState()
     val showDeleteDialog by viewModel.showDeleteDialog.collectAsState()
     
-    val context = LocalContext.current
     val clipboardManager = LocalClipboardManager.current
     
     // Handle error display
     LaunchedEffect(uiState.errorMessage) {
-        uiState.errorMessage?.let { message ->
+        uiState.errorMessage?.let { _ ->
             // Show snackbar or toast
             viewModel.clearError()
         }
@@ -142,13 +141,16 @@ fun ClientsScreen(
                 }
                 
                 else -> {
-                    // Client list
+                    // Client list with performance optimizations
                     LazyColumn(
                         modifier = Modifier.fillMaxSize(),
                         contentPadding = PaddingValues(16.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        items(uiState.clients) { client ->
+                        items(
+                            items = uiState.clients,
+                            key = { client -> client.id } // Оптимизация: добавляем ключ для избежания ненужных recomposition
+                        ) { client ->
                             ClientCard(
                                 client = client,
                                 onToggleEnabled = { viewModel.toggleClientEnabled(client) },

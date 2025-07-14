@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WG Android</string>
+    <string name="app_name">Syrex WG</string>
     <string name="welcome_title">WireGuard Easy Android</string>
     <string name="welcome_subtitle">Управляйте конфигурациями WireGuard</string>
     

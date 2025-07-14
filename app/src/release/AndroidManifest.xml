@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <application>
+        <!-- Disable debug activities in release builds -->
+        <activity
+            android:name=".SimpleMainActivity"
+            android:exported="false"
+            android:enabled="false"
+            tools:replace="android:exported,android:enabled">
+        </activity>
+        
+        <activity
+            android:name=".TestMainActivity"
+            android:exported="false"
+            android:enabled="false"
+            tools:replace="android:exported,android:enabled">
+        </activity>
+        
+        <activity
+            android:name=".SafeMainActivity"
+            android:exported="false"
+            android:enabled="false"
+            tools:replace="android:exported,android:enabled">
+        </activity>
+    </application>
+    
+</manifest> 

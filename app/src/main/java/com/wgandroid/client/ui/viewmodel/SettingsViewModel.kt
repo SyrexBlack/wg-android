@@ -39,8 +39,17 @@ class SettingsViewModel : ViewModel() {
     }
     
     fun initializeWithContext(context: Context) {
-        sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        loadSettings()
+        try {
+            sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+            loadSettings()
+        } catch (e: Exception) {
+            _uiState.value = _uiState.value.copy(
+                connectionStatus = ConnectionStatus(
+                    isSuccess = false,
+                    message = "Ошибка инициализации настроек: ${e.message}"
+                )
+            )
+        }
     }
     
     private fun loadSettings() {

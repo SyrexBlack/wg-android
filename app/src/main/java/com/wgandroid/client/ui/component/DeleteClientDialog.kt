@@ -62,11 +62,13 @@ fun DeleteClientDialog(
                 
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp, Arrangement.End)
+                    horizontalArrangement = Arrangement.End
                 ) {
                     TextButton(onClick = onDismiss) {
                         Text(stringResource(R.string.cancel))
                     }
+                    
+                    Spacer(modifier = Modifier.width(8.dp))
                     
                     Button(
                         onClick = onConfirmDelete,
